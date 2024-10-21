@@ -1,6 +1,6 @@
 class ContaCorrente():
 
-    def __init__(self, nome, cpf, limite):
+    def __init__(self, nome, cpf):
         self.nome = nome
         self.cpf = cpf
         self.saldo = 0
