@@ -24,6 +24,7 @@ class ContaCorrente():
 
     def depositar_dinheiro(self, valor):
         self.saldo += valor
+        self.transacoes.append((valor, self.saldo, ContaCorrente._data_hora()))
         pass
 
     def limite_conta(self):
@@ -52,16 +53,23 @@ class ContaCorrente():
 
 #Programa
 
-conta_lira = ContaCorrente("Lira", "111.222.333.45")
+conta_lira = ContaCorrente("Lira", "111.222.333.45", "1", "1234567")
 conta_lira.consultar_saldo()
+
+conta_maelira = ContaCorrente("beth", "222.333.444.55", 5555, 656565)
+conta_maelira.consultar_saldo()
+conta_lira.transferir(1000, conta_maelira)
 
 #Depositar um dinheirinho na conta:
 conta_lira.depositar_dinheiro(10000)
 conta_lira.consultar_saldo()
 
 #Sacando um dinheirinho da conta:
-conta_lira.sacar_dinheiro(100000)
+conta_lira.sacar_dinheiro(1000)
 conta_lira.consultar_saldo()
 
+
 print('Saldo da conta é',conta_lira.saldo)
-print(conta_lira.cpf)
+print(conta_lira.cpf) 
+
+conta_lira.consultar_historico_transacoes() 
