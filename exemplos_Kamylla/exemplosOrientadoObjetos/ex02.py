@@ -1,10 +1,22 @@
+from datetime import datetime
+import pytz
+
 class ContaCorrente():
 
-    def __init__(self, nome, cpf):
-        self.nome = nome
+    @staticmethod
+    def _data_hora():
+        fuso_BR = pytz.timezone('Brazil/East')
+        horario_BR = datetime.now(fuso_BR)
+        return horario_BR.strftime('%d/%m/%Y %H:%M:%S')
+
+    def __init__(self, nome, cpf, agencia, num_conta):
+        self._nome = nome
         self.cpf = cpf
         self.saldo = 0
         self.limite = None
+        self.agencia = agencia
+        self.num_conta = num_conta
+        self.transacoes = []
 
     def consultar_saldo(self):
         print('Seu saldo atual é de R${:,.2f}'.format(self.saldo))
@@ -24,7 +36,19 @@ class ContaCorrente():
             self.consultar_saldo()
         else:
             self.saldo -= valor
+            self.transacoes.append((valor, self.saldo, ContaCorrente._data_hora()))
         pass
+
+    def consultar_historico_transacoes(self):
+        print("Histórico de transações:")
+        for transacao in self.transacoes:
+            print(transacao)
+
+    def transferir(self, valor, conta_destino):
+        self.saldo -= valor
+        self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
+        conta_destino.saldo += valor
+        conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
 
 #Programa
 
