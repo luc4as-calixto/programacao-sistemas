@@ -73,3 +73,6 @@ print('Saldo da conta é',conta_lira.saldo)
 print(conta_lira.cpf) 
 
 conta_lira.consultar_historico_transacoes() 
+
+# saldo via métodos
+print(conta_lira.saldo)
