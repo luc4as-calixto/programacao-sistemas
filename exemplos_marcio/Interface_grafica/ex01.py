@@ -50,7 +50,7 @@ def buscar_cotacoes():
         if cotacao:
             mensagem_cotacoes.append(f"{item} : R${cotacao}")
     mensagem4 = tk.Label(text = "\n".join(mensagem_cotacoes))
-    mensagem4.grid(row = 6, column = 0, sticky = "NSEW")
+    mensagem4.grid(row = 6, column = 1, sticky = "NSEW")
 
 botao_multiplascotacoes = tk.Button(text = "Buscar Cotações", command = buscar_cotacoes)
 botao_multiplascotacoes.grid(row = 5, column = 1)
